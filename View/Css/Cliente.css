@@ -1,0 +1,83 @@
+
+html{
+    background: url(Fondo.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    
+}
+
+#todo{
+    width:1000px;
+    font-family: Tahoma;
+    margin: 0 auto;
+    color: whitesmoke;
+}
+
+#equipos{
+    float: right;
+    font-family: Tahoma;
+    margin-top: 20px;
+    width: 580px;
+    height: 500px;
+    background: rgba(99,99,99,0.4);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#izquierda{
+    width: 350px;
+    height: 590px;
+    float: left;
+    background: rgba(99,99,99,0.4);
+    margin-top: 20px;
+    padding-left: 40px;
+    font-size: 16px;
+    
+}
+
+.dato{
+    margin-top: -20px;
+}
+
+.titulo {
+    color: darkcyan;
+    font-size: 30px;
+    font-weight: bold;
+ 
+} 
+
+.informacion{
+    margin-left: 55px;
+    margin-top: -20px;
+    font-size: 26px;
+}
+
+#desactivar{
+    float: right;
+    width: 295px;
+    height:80px;
+    background: rgba(99,99,99,0.4);
+    margin-top: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+#editar{
+    float: right;
+    width: 295px;
+    height: 80px;
+    background: rgba(99,99,99,0.4);
+    margin-top: 10px;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+a:hover{
+    color: darkcyan;
+}
+

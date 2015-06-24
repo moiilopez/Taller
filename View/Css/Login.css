@@ -1,0 +1,86 @@
+html{
+    background: url(Fondo.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    
+}
+
+fieldset{
+  width: 400px;
+  border-radius: 15px;
+  border-style: solid;
+  text-align: center;
+  margin: 200px auto 30px;
+  font-family: Tahoma;
+}
+
+fieldset label{
+  font-weight: bold;
+}
+
+fieldset input[type="text"]{
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  border-style: solid;
+  text-align: center;
+  font-size: 16px;
+  color: grey;
+  background: rgba(0,0,0,0.0);
+}
+
+fieldset input[type="text"]:hover{
+  border-color: darkcyan;
+
+}
+
+fieldset input[type="text"]:focus{
+  width: 320px;
+  height: 45px;
+  border-color: darkcyan;
+}
+
+fieldset input[type="password"]{
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  border-style: solid;
+  text-align: center;
+  font-size: 16px;
+  background: rgba(0,0,0,0.0);
+}
+
+fieldset input[type="password"]:hover{
+  border-color: darkcyan;
+
+}
+
+fieldset input[type="password"]:focus{
+  width: 320px;
+  height: 45px;
+  border-color: darkcyan;
+}
+
+fieldset input[type="submit"]{
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  border-style: solid;
+  text-align: center;
+  font-size: 16px;
+  background: rgba(0,0,0,0.2);
+}
+
+fieldset input[type="submit"]:hover{
+  border-color: darkcyan;
+  background: rgba(0,0,0,0.0);
+
+}
+
+fieldset input[type="submit"]:active{
+  width: 220px;
+  height: 45px;
+  border-color: whitesmoke;
+  background-color: darkcyan;
+}

@@ -1,0 +1,27 @@
+
+#tecnico{
+    width: 400px;
+}
+
+#cliente{
+    width: 400px;
+    float: right;
+    margin-top: -155px;
+}
+
+#valPre{
+    float: right;
+}
+
+#valorPre{
+    width: 882px;
+    height: 80px;
+}
+ #status{
+    float: left;
+ }
+
+#submit{
+    margin-top: 100px;
+    margin-left: 380px; 
+}

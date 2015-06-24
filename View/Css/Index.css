@@ -1,0 +1,60 @@
+
+a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+a:hover{
+    color: darkcyan;
+}
+
+html{
+    background: url(Fondo.png) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    
+}
+
+#todo{
+    width: 1200px;
+    text-align: center;
+    font-family: Impact;
+    font-size: 20px;
+    margin: 0 auto;
+}
+
+#links{
+    width: 1200px;
+    height: 120px;
+    background: rgba(99,99,99,0.4);
+    font-size: 45px;
+}
+
+#registroCliente{
+    float: left;
+    width: 280px;
+    height: 120px;   
+    margin-left: 50px;
+}
+
+#registroEquipo{
+    float: left;
+    width: 280px;
+    height: 120px;
+}
+
+#listaClientes{
+    float: left;
+    width: 280px;
+    height: 120px; 
+}
+
+#listaEquipos{
+    float: left;
+    width: 280px;
+    height: 120px;
+}
+
+
+
