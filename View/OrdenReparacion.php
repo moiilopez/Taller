@@ -436,7 +436,7 @@
                 <div class="col-md-5">
                     <div class="col-md-4">
                         
-                        <a href="../view/Cliente.php?clienteId=<?php echo$resultadoEquipo[0]['cliente_ID']; ?>"><button class="btn btn-primary btn-lg"><i class="fa fa-user-md"></i> Informacion de Cliente</button></a>
+                        <a href="../view/Cliente.php?clienteId=<?php echo$resultadoEquipo[0]['cliente_ID']; ?>"><button class="btn btn-primary btn-lg"><i class="fa fa-user-md"></i> Informacion de Cliente</button></a><br><br>
                         <a href="../view/Equipo.php?equipoId=<?php echo$resultadoEquipo[0]['id']?>"><button class="btn btn-info btn-lg"><i class="fa fa-desktop-md"></i> Informacion de Equipo</button></a>
 
                     </div>
