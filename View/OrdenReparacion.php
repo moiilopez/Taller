@@ -312,7 +312,7 @@
                     <div class="col-md-12">
                         <h1 class="page-header">
                             <i class="fa fa-desktop"></i>
-                            Informacion de Equipo
+                            Orden de Reparacion
                         </h1>
                         
                     </div>
@@ -348,15 +348,23 @@
                 $equipoId = $_GET['equipoId'];
                 include '../Controller/EquipoController.php';  
                 $fecha = date("Y/m/d");
-                if(empty($resultadoEquipo[0]['InfTecnico'])){
+                if(empty($resultadoEquipo[0]['InfTecnico']) && empty($resultadoEquipo[0]['InfCliente']) && empty($resultadoEquipo[0]['ValPre']) && empty($resultadoEquipo[0]['Extras']) &&
+                    empty($resultadoEquipo[0]['ValEx']) && empty($resultadoEquipo[0]['Total'])){
                     $vacio = 1;
                 }  else {
                     $vacio = 0;
                 }
+                
                 ?>
-<!--                <div class="col-md-1"></div>-->
+
                 <div class="col-md-7">
-                     <form action="../Controller/equipoController.php?action=presupuesto&vacio=<?php echo$vacio?>" method="post" role="form" oninput="total.value=parseInt(valPre.value)+parseInt(valEx.value)">
+                    <?php
+                    if(isset($_GET['msj'])){
+                            $msj = $_GET['msj'];
+                            include 'Mensajes.php';
+                        }
+                    ?>
+                    <form action="../Controller/equipoController.php?action=presupuesto&vacio=<?php echo$vacio?>" method="post" role="form" oninput="total.value=parseInt(valPre.value)+parseInt(valEx.value)">
                                 <div class="form-group">
                                     <label for="problema">Problema:</label><br>
                                     <input type="text" name="problema" class="form-control" id="prob" value="<?php echo $resultadoEquipo[0]['problema']?>">
@@ -423,7 +431,15 @@
                                     <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
                                 </div>       
                     
-                    
+                    </form>
+                </div>
+                <div class="col-md-5">
+                    <div class="col-md-4">
+                        
+                        <a href="../view/Cliente.php?clienteId=<?php echo$resultadoEquipo[0]['cliente_ID']; ?>"><button class="btn btn-primary btn-lg"><i class="fa fa-user-md"></i> Informacion de Cliente</button></a>
+                        <a href="../view/Equipo.php?equipoId=<?php echo$resultadoEquipo[0]['id']?>"><button class="btn btn-info btn-lg"><i class="fa fa-desktop-md"></i> Informacion de Equipo</button></a>
+
+                    </div>
                 </div>
              </div><!-- /. PAGE INNER  -->
         </div><!-- /. PAGE WRAPPER  -->

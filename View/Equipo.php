@@ -498,7 +498,7 @@
                         <br><br>
                         <a href="../controller/equipoController.php?equipoId=<?php echo$resultadoEquipo[0]['id']; ?>&action=<?php echo$cambiar?>"><button class="btn btn-danger btn-lg"><i class="fa fa-warning"></i> <?php echo$cambiar?></button></a>
                         <br><br>
-                                <a href="OrdenReparacion.php?equipoId=<?php echo$resultadoEquipo[0]['id']; ?>"><button class="btn btn-success btn-lg"><i class="fa fa-list-alt"></i> Orden de Reparacion</button></a>
+                        <a href="OrdenReparacion.php?equipoId=<?php echo$resultadoEquipo[0]['id']; ?>"><button class="btn btn-success btn-lg"><i class="fa fa-list-alt"></i> Orden de Reparacion</button></a>
                         <br><br>
                         <a href="../view/Cliente.php?clienteId=<?php echo$resultadoEquipo[0]['cliente_ID']; ?>"><button class="btn btn-primary btn-lg"><i class="fa fa-user-md"></i> Informacion de Cliente</button></a>
                         

@@ -310,7 +310,7 @@
                         if(isset($_GET['msj'])){
                             $msj = $_GET['msj'];
                             include 'Mensajes.php';
-                        };?>
+                        }?>
 
                         <h1 class="page-header">
                             Registro de Cliente

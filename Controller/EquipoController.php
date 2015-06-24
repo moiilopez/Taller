@@ -154,16 +154,17 @@ if($action == "registrar"){
 
         if($vacio == 0){
             $resultadoEquipo = actualizarPresupuesto($objEquipo);
+            
         }  else {
             $resultadoEquipo = incluirPresupuesto($objEquipo);
         }
             
     if($resultadoEquipo == TRUE){
         $msj = 11;
-        header ('Location../view/Equipo.php?equipoId='.$objEquipo->id);
+        header ('Location:../view/OrdenReparacion.php?equipoId='.$objEquipo->id.'&msj='.$msj);
     }  else {
         $msj = 10;
-        header ('Location../view/Equipo.php?equipoId='.$objEquipo->id);
+        header ('Location:../view/OrdenReparacion.php?equipoId='.$objEquipo->id.'&msj='.$msj);
     }
 }elseif($action == "pronto"){
     
