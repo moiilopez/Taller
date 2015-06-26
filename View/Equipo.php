@@ -33,19 +33,7 @@
             $equipoId = $_GET['equipoId'];
             include '../Controller/EquipoController.php';  
             $fecha = date("Y/m/d");
-            if(empty($resultadoEquipo[0]['InfTecnico'])){
-                $vacio = 1;
-            }  else {
-                $vacio = 0;
-            }
-            
-            $estado = [
-                0 => "Sin revisar",
-                1 => "Presupuestado",
-                2 => "Confirmado",
-                3 => "Pronto",
-                4 => "Entregado",
-            ];
+
             if ($resultadoEquipo[0]['activo'] == 1){
                 $activo = "activo";
                 $cambiar = "Desactivar";

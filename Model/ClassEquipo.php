@@ -67,6 +67,10 @@ function incluirPresupuesto($objEquipo){
     return insertPresupuesto($objEquipo);
 }
 
+function entregar($objEquipo){
+    return deliver($objEquipo);
+}
+
 function arrayTodo($objEquipo){
     return getAll($objEquipo);
 }
@@ -79,10 +83,18 @@ function buscarConfirmados(){
     return getConfirmed();
 }
 
+function buscarNopresupuestados(){
+    return getBudget();
+}
+
 function buscarNorevisados(){
     return getUnrevised();
 }
 
 function buscarEntregados(){
     return getDeliver();
+}
+
+function buscarHistorial($objEquipo){
+    return getHistoric($objEquipo);
 }

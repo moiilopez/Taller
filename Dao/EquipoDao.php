@@ -122,6 +122,7 @@ function updatePresupuesto($objEquipo){
             . ' WHERE Equipo_Id=:id';
     
     $parameters = array();
+    
     $parameters [':problema'] = $objEquipo->problema;
     $parameters [':infTecnico'] = $objEquipo->infTecnico;
     $parameters [':infCliente'] = $objEquipo->infCliente;
@@ -142,6 +143,7 @@ function insertPresupuesto($objEquipo){
             . 'VALUES (:problema,:infTecnico,:infCliente,:valPre,:extras,:valEx,:total,:fecha,:status,:id) ';
     
     $parameters = array();
+    
     $parameters [':problema'] = $objEquipo->problema;
     $parameters [':infTecnico'] = $objEquipo->infTecnico;
     $parameters [':infCliente'] = $objEquipo->infCliente;
@@ -150,6 +152,19 @@ function insertPresupuesto($objEquipo){
     $parameters [':valEx'] = $objEquipo->valEx;
     $parameters [':total'] = $objEquipo->total;
     $parameters [':fecha'] = $objEquipo->fecha;
+    $parameters [':status'] = $objEquipo->status;
+    $parameters [':id'] = $objEquipo->id;
+    
+    return executeCommand($sqlCommand, $parameters);
+}
+
+function deliver($objEquipo){
+    
+    $sqlCommand = 'UPDATE presupuesto SET Status=:status '
+            . ' WHERE Equipo_Id=:id';
+    
+    $parameters = array();
+    
     $parameters [':status'] = $objEquipo->status;
     $parameters [':id'] = $objEquipo->id;
     
@@ -193,6 +208,17 @@ function getConfirmed(){
     return executeQuery($sqlCommand, array());
 }
 
+function getBudget(){
+    
+    $sqlCommand = 'SELECT equipo.*'
+                . ' FROM equipo'
+                . ' LEFT JOIN presupuesto'
+                . ' ON presupuesto.Equipo_Id = equipo.Id'
+                . ' WHERE status = 2';
+    
+    return executeQuery($sqlCommand, array());
+}
+
 function getUnrevised(){
     
     $sqlCommand = 'SELECT equipo.*, presupuesto.*, equipo.Fecha'
@@ -209,7 +235,20 @@ function getDeliver(){
                 . ' FROM equipo'
                 . ' LEFT JOIN presupuesto'
                 . ' ON presupuesto.Equipo_Id = equipo.Id'
-                . ' WHERE status = 4';
+                . ' WHERE status = 5';
     
     return executeQuery($sqlCommand, array());
+}
+
+function getHistoric($objEquipo){
+    
+    $sqlCommand = 'SELECT *'
+                . ' FROM presupuesto'
+                . ' WHERE equipo_Id = :id';
+    
+    $parameters = array();
+    
+    $parameters [':id'] = $objEquipo->id;
+    
+    return executeQuery($sqlCommand, $parameters);
 }

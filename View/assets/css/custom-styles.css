@@ -130,7 +130,7 @@ font-size: 40px;
 border-radius: 50px;
 
 }
-    .bg-color-green {
+ .bg-color-green {
 background-color: #fff;
 color: #5cb85c;
 }
@@ -145,6 +145,10 @@ color:#F0433D;
   .bg-color-brown {
 background-color: #fff;
 color:#f0ad4e;
+}
+  .bg-color-black {
+background-color: #fff;
+color: black;
 }
 .back-footer-green {
 background-color: #5cb85c;
@@ -164,6 +168,11 @@ border-top: 0px solid #fff;
  .back-footer-brown {
 background-color: #f0ad4e;
 color:#fff;
+border-top: 0px solid #fff;
+}
+ .back-footer-black {
+background-color: black;
+color: white;
 border-top: 0px solid #fff;
 }
  .icon-box-right {

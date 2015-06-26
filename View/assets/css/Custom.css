@@ -1,27 +1,24 @@
 
 #tecnico{
-    width: 400px;
+    width: 330px;
 }
 
 #cliente{
-    width: 400px;
+    width: 330px;
     float: right;
-    margin-top: -155px;
+    margin-top: -216px;
 }
 
-#valPre{
+.valPre{
     float: right;
 }
 
-#valorPre{
-    width: 882px;
-    height: 80px;
+#status{
+   float: left;
 }
- #status{
-    float: left;
- }
 
 #submit{
-    margin-top: 100px;
-    margin-left: 380px; 
+    margin: 50px;
+    text-align: center;
 }
+

@@ -59,8 +59,16 @@ if($msj == 1):
     
     if($msj == 40): 
     ?>
-    <div class="alert alert-success">
+    <div class="alert alert-warning">
         <button class="close" data-dismiss="alert">x</button>
         <p>Su busqueda no coincide con ningin regitro</p>
+    </div>
+    <?php endif;
+    
+    if($msj == 50): 
+    ?>
+    <div class="alert alert-warning">
+        <button class="close" data-dismiss="alert">x</button>
+        <p>Error en la entrega.</p>
     </div>
     <?php endif;

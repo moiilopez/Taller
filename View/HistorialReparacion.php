@@ -6,15 +6,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inicio</title>
+    <title>Ordenes de Reparacion</title>
 	<!-- Bootstrap Styles-->
     <link href="/Taller/View/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="/Taller/View/assets/css/font-awesome.css" rel="stylesheet" />
+     <!-- Morris Chart Styles-->
+   
         <!-- Custom Styles-->
     <link href="/Taller/View/assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <!-- TABLE STYLES-->
+    <link href="../assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
 <body>
     <div id="wrapper">
@@ -26,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Taller 2.1</a>
+                <a class="navbar-brand" href="index.html">Taller 2.1</a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -244,12 +248,12 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="index.php" class="active-menu"><i class="fa fa-dashboard"></i> Inicio</a>
+                        <a href="../View/index.php"><i class="fa fa-dashboard"></i> Inicio</a>
                     </li>
                     <li>
-                        <a href="../View/RegistroCliente.php" ><i class="fa fa-user"></i> Registro de Cliente</a>
+                        <a href="../View/RegistroCliente.php"><i class="fa fa-user"></i> Registro de Cliente</a>
                     </li>
-					<li>
+                    <li>
                         <a href="../View/RegistroEquipo.php"><i class="fa fa-desktop"></i> Registro de Equipo</a>
                     </li>
                     <li>
@@ -258,6 +262,9 @@
                     
                     <li>
                         <a href="../View/BusquedaEquipo.php"><i class="fa fa-search"></i> Buscar Equipo</a>
+                    </li>
+                    <li>
+                        <a class="active-menu"><i class="fa fa-list-alt"></i> Ordenes de Reparacion</a>
                     </li>
 <!--                    <li>
                         <a href="form.html"><i class="fa fa-edit"></i> Forms </a>
@@ -302,158 +309,54 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-		
-                <div class="row">    
-                    <div class="col-md-12">
-                        <h1 class="page-header">
-                            Inicio
-                        </h1>
-                        
-                    </div>
-                </div> <!-- /. ROW  -->
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-green">
-                            <div class="panel-body">
-                                <i class="fa fa-check-circle fa-5x"></i>
-                                <!--<h3>8,457</h3>-->
-                            </div>
-                            <a href="../Controller/EquipoController.php?action=pronto">
-                                <div class="panel-footer back-footer-green">
-                                    Equipos Prontos
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-blue">
-                            <div class="panel-body">
-                                <i class="fa fa-print fa-5x"></i>
-                                <!--<h3>52,160 </h3>-->
-                            </div>
-                            <a href="../Controller/EquipoController.php?action=confirmado">
-                                <div class="panel-footer back-footer-blue">
-                                    Confirmado
-
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-brown">
-                            <div class="panel-body">
-                                <i class="fa fa-phone-square fa-5x"></i>
-                                <!--<h3>36,752 </h3>-->
-                            </div>
-                            <a href="../Controller/EquipoController.php?action=presupuestar">
-                                <div class="panel-footer back-footer-brown">
-                                    Presupuestar
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-red">
-                            <div class="panel-body">
-                                <i class="fa fa-exclamation-circle fa-5x"></i>
-                                <!--<h3>15,823 </h3>-->
-                            </div>
-                            <a href="../Controller/EquipoController.php?action=revisar">
-                                <div class="panel-footer back-footer-red">
-                                    Sin Revisar
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-<!--                <div class="row">
-
-
-                    <div class="col-md-9 col-sm-12 col-xs-12">
+		<div class="row">   
+                    <div class="col-md-14">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Bar Chart Example
+                                Ordenes de Reparacion
                             </div>
-                            <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Donut Chart Example
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>-->
-                <!-- /. ROW  -->
-
-                <div class="row">
-                    
-                    <div class="col-md-8 col-sm-12 col-xs-12">
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Ultimos equipos entregados
-                            </div> 
-                            <?php 
-                            $entregado = 1;
-                            include '../Controller/EquipoController.php';
-                            
-                            ?>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Tipo</th>
-                                                <th>Modelo</th>
-                                                <th>Marca</th>
-                                                <th>Cliente</th>
+                                                <th>Problema</th>
+                                                <th>Presupuesto</th>
+                                                <th>Valor</th>
+                                                <th>Extras</th>
+                                                <th>Valor</th>
+                                                <th>Total</th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>
-                                            <?php
-                                            foreach ($resultadoEquipo as $equipo):
-                                                
-                                            ?>
+                                        <?php
+                                        //var_dump($resultadoEquipo);
+                                        foreach ($resultadoEquipo as $equipo):
+                                        ?>    
                                             <tr>
-                                                <td><?php echo$equipo['ID']?></td>
-                                                <td><?php echo$equipo['Tipo']?></td>
-                                                <td><?php echo$equipo['Modelo']?></td>
-                                                <td><?php echo$equipo['Marca']?></td>
-                                                <td><?php echo$equipo['Cliente_Nombre']?></td>
+                                                <td><?php echo$equipo['Id']?></td>                  
+                                                <td><?php echo$equipo['Problem']?></td>
+                                                <td><?php echo$equipo['InfCliente']?></td>
+                                                <td><?php echo$equipo['ValPre']?></td>
+                                                <td><?php echo$equipo['Extras']?></td>
+                                                <td><?php echo$equipo['ValEx']?></td>
+                                                <td><?php echo$equipo['Total']?></td>
+<!--                                                <td> <a href="../Controller/EquipoController.php?equipoId=<?php //echo$equipo['id']?>&action=consultar"><button class="btn btn-warning btn-sm">Editar</button></a>
+                                                     <a href="../Controller/EquipoController.php?equipoId=<?php //echo$equipo['id']; ?>&action=<?php //echo$cambiar?>"><button class="btn btn-danger btn-sm"><?php //echo$cambiar; ?></button></a></td>-->
                                             </tr>
-                                            <?php
-                                            endforeach;
-                                            ?>
+                                        <?php
+                                        endforeach;
+                                        ?>
                                         </tbody>
+                                        
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-black">
-                            <div class="panel-body">
-                                <i class="fa fa-user fa-5x"></i>
-                                <!--<h3>36,752 </h3>-->
-                            </div>
-                            <div class="panel-footer back-footer-black">
-                                Usuario
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div> <!-- /. ROW  -->
              </div><!-- /. PAGE INNER  -->
         </div><!-- /. PAGE WRAPPER  -->
         
@@ -462,12 +365,19 @@
     <!-- jQuery Js -->
     <script src="/Taller/View/assets/js/jquery-1.10.2.js"></script>
       <!-- Bootstrap Js -->
-    <script src="/Taller/View/assets/js/bootstrap.min.js"></script>
+      <script src="/Taller/View/assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
     <script src="/Taller/View/assets/js/jquery.metisMenu.js"></script>
-      <!-- Custom Js -->
+     <!-- DATA TABLE SCRIPTS -->
+     <script src="/Taller/View/assets/js/dataTables/jquery.dataTables.js"></script>
+     <script src="/Taller/View/assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+         <!-- Custom Js -->
     <script src="/Taller/View/assets/js/custom-scripts.js"></script>
-    
    
 </body>
 </html>

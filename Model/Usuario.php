@@ -1,8 +1,21 @@
 <?php
 
+include '../Dao/UsuarioDao.php';
 
-function autenticar ($usuario, $contrasena){
-    if ($usuario == "taller" & $contrasena == "12345")
-    {return TRUE;}
-        else { FALSE;}
+class login{
+    private $id;
+    public $username;
+    public $contrasena;
+    public $email;
+}
+
+function login ($objUsuario){
+    
+    if ($objUsuario->username == "taller" & $objUsuario->contrasena == "12345"){
+        return TRUE;
+    } else { 
+        FALSE;
     }
+    
+    return autenticar($objUsuario);
+}

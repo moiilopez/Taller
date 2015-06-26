@@ -16,7 +16,7 @@ if($action == "registrar"){
         $objEquipo->serial = $_POST["serial"];
         $objEquipo->problema = $_POST["serial"];
         $objEquipo->fecha = $_POST["fecha"];
-        $objEquipo->status = 3;
+        
         $objEquipo->clienteId = $_POST["clienteId"];
         
         $nombre = clienteNombre();
@@ -132,8 +132,8 @@ if($action == "registrar"){
         if($resultadoEquipo == TRUE){
                 include '../View/ListaEquipos.php';
             }else{
-                $msj = 30;
-                header('Location:../view/BusquedaCliente.php?msj='.$msj);
+                $msj = 40;
+                header('Location:../view/BusquedaEquipo.php?msj='.$msj);
             }
 }elseif($action == "presupuesto"){
     
@@ -166,6 +166,21 @@ if($action == "registrar"){
         $msj = 10;
         header ('Location:../view/OrdenReparacion.php?equipoId='.$objEquipo->id.'&msj='.$msj);
     }
+}elseif($action == "entregar"){
+    
+    $objEquipo = new Equipo();
+    
+        $objEquipo->id = $_GET["equipoId"];
+        $objEquipo->status = 5;
+
+        $resultadoEquipo = actualizarPresupuesto($objEquipo);
+            
+    if($resultadoEquipo == TRUE){
+        header ('Location:../view/OrdenReparacion.php?equipoId='.$objEquipo->id);
+    }  else {
+        $msj = 50;
+        header ('Location:../view/OrdenReparacion.php?equipoId='.$objEquipo->id.'&msj='.$msj);
+    }
 }elseif($action == "pronto"){
     
     $resultadoEquipo = buscarProntos();
@@ -185,12 +200,36 @@ if($action == "registrar"){
         $msj = 30;
         header('Location:../view/ListaConfirmados.php');
     }
+}elseif($action == "presupuestar"){
+    
+    $resultadoEquipo = buscarNopresupuestados();
+           
+    if($resultadoEquipo == TRUE){
+        include '../View/ListaPresupuestar.php';
+    }  else {
+        $msj = 30;
+        header('Location:../view/ListaPresupuestar.php');
+    }
 }elseif($action == "revisar"){
     
     $resultadoEquipo = buscarNorevisados();
 
     if($resultadoEquipo == TRUE){
         include '../View/ListaNoRevisados.php';
+    }  else {
+        $msj = 30;
+        header('Location:../view/ListaNoRevisados.php');
+    }
+}elseif($action == "historial"){
+    
+    $objEquipo = new Equipo();
+    
+        $objEquipo->id = $_GET["equipoId"];
+    
+    $resultadoEquipo = buscarHistorial($objEquipo);
+
+    if($resultadoEquipo == TRUE){
+        include '../View/HistorialReparacion.php';
     }  else {
         $msj = 30;
         header('Location:../view/ListaNoRevisados.php');
@@ -214,7 +253,26 @@ if(!empty($equipoId)){
             $objEquipo->id = $equipoId;
             
             $resultadoEquipo = arrayTodo($objEquipo);
-        
+            
+            
+            
+        //si es true es xq nunca tuvo una orden registrada
+        if(empty($resultadoEquipo[0]['InfTecnico']) && empty($resultadoEquipo[0]['InfCliente']) && 
+                empty($resultadoEquipo[0]['ValPre']) && empty($resultadoEquipo[0]['Extras']) &&
+                empty($resultadoEquipo[0]['ValEx']) && empty($resultadoEquipo[0]['Total'])){
+                $vacio = 1;
+            }  else {
+                $vacio = 0;
+            }
+                                                 
+            $estado = [
+                0 => "Sin revisar",
+                1 => "Revisado",
+                2 => "Presupuestado",
+                3 => "Confirmado",
+                4 => "Pronto",
+                5 => "Entregado",
+            ];
 }
 
 if (isset($entregado) && $entregado == 1){

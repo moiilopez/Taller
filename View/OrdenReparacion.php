@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Equipo</title>
+    <title>Orden de Reparacion</title>
 	<!-- Bootstrap Styles-->
     <link href="/Taller/View/assets/css/bootstrap.css" rel="stylesheet" />
     <link href="/Taller/View/assets/css/Custom.css" rel="stylesheet" />
@@ -29,6 +29,12 @@
                 </button>
                 <a class="navbar-brand" href="index.php">Taller 2.1</a>
             </div>          
+            
+            <?php
+            $fecha = date("Y/m/d");
+            $equipoId = $_GET['equipoId'];
+            include '../Controller/EquipoController.php';  
+            ?>
             
             <ul class="nav navbar-top-links navbar-right">
                 <!--<li class="dropdown">
@@ -261,7 +267,7 @@
                         <a href="../View/BusquedaEquipo.php"><i class="fa fa-search"></i> Buscar Equipo</a>
                     </li>
                     <li>
-                        <a class="active-menu"><i class="fa fa-desktop"></i></a>
+                        <a class="active-menu"><i class="fa fa-desktop"></i><?php echo $resultadoEquipo[0]['tipo'].' - '.$resultadoEquipo[0]['marca'];?></a>
                     </li>
 <!--                    <li>
                         <a href="form.html"><i class="fa fa-edit"></i> Forms </a>
@@ -343,104 +349,212 @@
 
                 </div>-->
                 <!-- /. ROW  -->
-                <?php
-                $fecha = date("Y/m/d");
-                $equipoId = $_GET['equipoId'];
-                include '../Controller/EquipoController.php';  
-                $fecha = date("Y/m/d");
-                if(empty($resultadoEquipo[0]['InfTecnico']) && empty($resultadoEquipo[0]['InfCliente']) && empty($resultadoEquipo[0]['ValPre']) && empty($resultadoEquipo[0]['Extras']) &&
-                    empty($resultadoEquipo[0]['ValEx']) && empty($resultadoEquipo[0]['Total'])){
-                    $vacio = 1;
-                }  else {
-                    $vacio = 0;
-                }
-                
-                ?>
-
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <?php
                     if(isset($_GET['msj'])){
                             $msj = $_GET['msj'];
                             include 'Mensajes.php';
                         }
+                    if($resultadoEquipo[0]['Status'] != 5):
                     ?>
                     <form action="../Controller/equipoController.php?action=presupuesto&vacio=<?php echo$vacio?>" method="post" role="form" oninput="total.value=parseInt(valPre.value)+parseInt(valEx.value)">
-                                <div class="form-group">
+                                
+                                <div class="row">
                                     <label for="problema">Problema:</label><br>
                                     <input type="text" name="problema" class="form-control" id="prob" value="<?php echo $resultadoEquipo[0]['problema']?>">
-                                </div>
-                                <div class="form-group">
+                                </div><br>
+                        
+                                <div class="row">
                                     <div id="tecnico">
                                         <label for="informe">Informe Tecnico:</label><br>
-                                        <textarea name="infTecnico" rows="5" cols="35" class="form-control"><?php echo $resultadoEquipo[0]['InfTecnico']?></textarea>
+                                        <textarea name="infTecnico" rows="8" cols="35" class="form-control"><?php echo $resultadoEquipo[0]['InfTecnico']?></textarea>
                                     </div>
                                     <div id="cliente">
                                         <label for="informe">Informe al Cliente:</label><br>
-                                        <textarea name="infCliente" rows="5" cols="35" class="form-control"><?php echo $resultadoEquipo[0]['InfCliente']?></textarea>
+                                        <textarea name="infCliente" rows="8" cols="35" class="form-control"><?php echo $resultadoEquipo[0]['InfCliente']?></textarea>
                                     </div> 
-                                </div>        
-                                <div class="form-group" id="valorPre">
-                                    <div id="valPre">
+                                </div><br>
+                        
+                                <div class="row">
+                                    <div class="valPre">
                                         <label for="valor" >Valor:</label>
                                         <input type="text" name="valPre" class="form-control" value="<?php echo $resultadoEquipo[0]['ValPre']?>">
-                                </div></div>
-                                <div class="form-group" id="extras">
-                                    <label for="extras">Extras:</label><br>
-                                    <textarea name="extras" rows="3" cols="10" class="form-control"><?php echo $resultadoEquipo[0]['Extras']?></textarea>
-                                </div>
-                                <div class="form-group" id="valorPre">
-                                    <div id="valPre">
+                                    </div>
+                                </div><br>
+                        
+                                <div class="row">
+                                    <div id="extras">
+                                        <label for="extras">Extras:</label><br>
+                                        <textarea name="extras" rows="3" cols="10" class="form-control"><?php echo $resultadoEquipo[0]['Extras']?></textarea>
+                                    </div>
+                                </div><br>
+                        
+                                <div class="row">
+                                    <div class="valPre">
                                         <label for="valor" class="val">Valor:</label>
                                         <input type="text" name="valEx" class="form-control" value="<?php echo $resultadoEquipo[0]['ValEx']?>">
                                     </div>
-                                </div>
-                                <div class="form-group" id="total">
-                                    <div id="valPre">
+                                </div><br>
+                                                                                
+                                <div class="row">                
+                                    <div class="valPre">
                                         <label for="valor" >Valor Total:</label>
                                         <input type="text" name="total" for="valPre valEx" class="form-control" value="<?php echo $resultadoEquipo[0]['Total']?>"></output>
                                     </div> 
-                                </div> 
-                                <div class="form-group" id="status">
-                                    <label for="status">Estado:</label>
-                                        <select name="status" class="form-control"> 
-                                        <?php
-                                        $estado = [
-                                                0 => "Sin revisar",
-                                                1 => "Presupuestado",
-                                                2 => "Confirmado",
-                                                3 => "Pronto",
-                                                4 => "Entregado",
-                                        ];
-
-                                        foreach ($estado as $est => $ado){
-                                            if($est == $resultadoEquipo[0]['Status']){
-                                                echo '<option value="'.$est.'" selected>'.$ado.'</option>';
-                                            }else{
-                                                echo '<option value="'.$est.'">'.$ado.'</option>';
+                                                                                
+                                    <div id="status">
+                                        <label for="status">Estado:</label>
+                                            <select name="status" class="form-control"> 
+                                            <?php
+                                            foreach ($estado as $est => $ado){
+                                                if($est == $resultadoEquipo[0]['Status']){
+                                                    echo '<option value="'.$est.'" selected>'.$ado.'</option>';
+                                                }else{
+                                                    echo '<option value="'.$est.'">'.$ado.'</option>';
+                                                }
                                             }
-                                        }
-                                        ?>
-                                        </select>
+                                            ?>
+                                            </select>
+                                    </div>
                                 </div>
 
 
                                 <input type="hidden" name="fecha" value=" <?php echo $fecha;?>">
                                 <input type="hidden" name="equipoId" value="<?php echo $resultadoEquipo[0]['id'];?>">
-                               
-                                <div class="form-group" id="submit">
-                                    <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
-                                </div>       
+                                
+                                <div class="row">
+                                    <div id="submit">
+                                        <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+                                    </div>
+                                </div>
                     
                     </form>
-                </div>
-                <div class="col-md-5">
-                    <div class="col-md-4">
-                        
-                        <a href="../view/Cliente.php?clienteId=<?php echo$resultadoEquipo[0]['cliente_ID']; ?>"><button class="btn btn-primary btn-lg"><i class="fa fa-user-md"></i> Informacion de Cliente</button></a><br><br>
-                        <a href="../view/Equipo.php?equipoId=<?php echo$resultadoEquipo[0]['id']?>"><button class="btn btn-info btn-lg"><i class="fa fa-desktop-md"></i> Informacion de Equipo</button></a>
-
+                    <?php
+                    endif;
+                    if($resultadoEquipo[0]['Status'] == 5 && !isset($_GET['nueva'])):
+                    ?>
+                    <div class="alert alert-info">
+                        <p>Este equipo cuenta con historial de reparacion</p><br>
+                        <a href="OrdenReparacion.php?equipoId=<?php echo$resultadoEquipo[0]['id']; ?>&nueva=1"><button class="btn btn-success btn-lg"><i class="fa fa-list-alt"></i> Nueva Orden de Reparacion</button></a>
+                        <a href="../Controller/equipoController.php?action=historial&equipoId=<?php echo$resultadoEquipo[0]['id']; ?>"><button class="btn btn-primary btn-lg"><i class="fa fa-table"></i> Ver Historial de Reparacion</button></a>
                     </div>
+                    <?php endif;
+                    
+                    
+                    
+                    
+                    if(isset($_GET['nueva'])):
+                    ?>
+                    <form action="../Controller/equipoController.php?action=presupuesto&vacio=<?php echo$vacio?>" method="post" role="form" oninput="total.value=parseInt(valPre.value)+parseInt(valEx.value)">
+                                
+                                <div class="row">
+                                    <label for="problema">Problema:</label><br>
+                                    <input type="text" name="problema" class="form-control" id="prob">
+                                </div><br>
+                        
+                                <div class="row">
+                                    <div id="tecnico">
+                                        <label for="informe">Informe Tecnico:</label><br>
+                                        <textarea name="infTecnico" rows="8" cols="35" class="form-control"></textarea>
+                                    </div>
+                                    <div id="cliente">
+                                        <label for="informe">Informe al Cliente:</label><br>
+                                        <textarea name="infCliente" rows="8" cols="35" class="form-control"></textarea>
+                                    </div> 
+                                </div><br>
+                        
+                                <div class="row">
+                                    <div class="valPre">
+                                        <label for="valor" >Valor:</label>
+                                        <input type="text" name="valPre" class="form-control">
+                                    </div>
+                                </div><br>
+                        
+                                <div class="row">
+                                    <div id="extras">
+                                        <label for="extras">Extras:</label><br>
+                                        <textarea name="extras" rows="3" cols="10" class="form-control"></textarea>
+                                    </div>
+                                </div><br>
+                        
+                                <div class="row">
+                                    <div class="valPre">
+                                        <label for="valor" class="val">Valor:</label>
+                                        <input type="text" name="valEx" class="form-control">
+                                    </div>
+                                </div><br>
+                                                                                
+                                <div class="row">                
+                                    <div class="valPre">
+                                        <label for="valor" >Valor Total:</label>
+                                        <input type="text" name="total" for="valPre valEx" class="form-control">
+                                    </div> 
+                                                                                
+                                    <div id="status">
+                                        <label for="status">Estado:</label>
+                                            <select name="status" class="form-control"> 
+                                            <?php
+                                            foreach ($estado as $est => $ado){
+                                                echo '<option value="'.$est.'">'.$ado.'</option>';
+                                            }
+                                            ?>
+                                            </select>
+                                    </div>
+                                </div>
+
+
+                                <input type="hidden" name="fecha" value=" <?php echo $fecha;?>">
+                                <input type="hidden" name="equipoId" value="<?php echo $resultadoEquipo[0]['id'];?>">
+                                
+                                <div class="row">
+                                    <div id="submit">
+                                        <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+                                    </div>
+                                </div>
+                    
+                    </form>
+                    <?php endif;?>
+                    
+                    
+                    
+                    
+                    
                 </div>
+                <div class="col-md-4">                                             
+                    <div class="col-md-10 col-sm-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                <strong>
+                                    <?php
+                                    echo $resultadoEquipo[0]['tipo'].': ';
+                                    echo $resultadoEquipo[0]['marca'].' - ';
+                                    echo $resultadoEquipo[0]['modelo'];
+                                    ?>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10 col-sm-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                <strong>
+                                    <?php
+                                    echo $resultadoEquipo[0]['cliente_Nombre'];
+                                    ?>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-sm-4">    
+                        <a href="../view/Cliente.php?clienteId=<?php echo$resultadoEquipo[0]['cliente_ID']; ?>"><button class="btn btn-primary btn-lg"><i class="fa fa-user-md"></i> Informacion de Cliente</button></a><br><br>
+                        <a href="../view/Equipo.php?equipoId=<?php echo$resultadoEquipo[0]['id']?>"><button class="btn btn-info btn-lg"><i class="fa fa-desktop"></i> Informacion de Equipo</button></a><br><br>
+                        
+                        <?php if($resultadoEquipo[0]['Status'] != 5 && !isset($_GET['nueva'])): ?>
+                                <a href="../Controller/equipoController.php?equipoId=<?php echo $resultadoEquipo[0]['id'] ?>&action=entregar"><button class="btn btn-success btn-lg"><i class="fa fa-arrow-right"></i> Entregar</button></a>
+                                <br><br>
+                        <?php endif; ?>
+                    </div>
              </div><!-- /. PAGE INNER  -->
         </div><!-- /. PAGE WRAPPER  -->
         

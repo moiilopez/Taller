@@ -2,16 +2,19 @@
 
 include '../Model/Usuario.php';
 
-$usuario = $_POST["nombre"];
-$contrasena = $_POST["contrasena"];
+$objUsuario = new login();
 
-session_start();
-$_SESSION["autenticar"] = autenticar($usuario,$contrasena);
+    $objUsuario->username = $_POST["nombre"];
+    $objUsuario->contrasena = $_POST["contrasena"];
 
-if($_SESSION["autenticar"] == TRUE)
-{
-       header('Location:../View/Index.php');
-}
-else {
-    header('Location:../View/Login.php');   
+    session_start();
+    
+    $_SESSION["autenticar"] = login($objUsuario);
+
+    if($_SESSION["autenticar"] == TRUE)
+    {
+        header('Location:../View/Index.php');
+    }
+    else {
+        header('Location:../View/Login.php');   
     }
