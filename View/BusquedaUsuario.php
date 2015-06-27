@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registro de Equipo</title>
+    <title>Busqueda de Usuario</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -30,8 +30,6 @@
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
-                
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -59,10 +57,10 @@
                         <a href="index.php"><i class="fa fa-dashboard"></i> Inicio</a>
                     </li>
                     <li>
-                        <a href="../View/RegistroCliente.php" ><i class="fa fa-user"></i> Registro de Cliente</a>
+                        <a href="../View/RegistroCliente.php"><i class="fa fa-user"></i> Registro de Cliente</a>
                     </li>
-					<li>
-                        <a href="../View/RegistroEquipo.php" class="active-menu"><i class="fa fa-desktop"></i> Registro de Equipo</a>
+                    <li>
+                        <a href="../View/RegistroEquipo.php"><i class="fa fa-desktop"></i> Registro de Equipo</a>
                     </li>
                     <li>
                         <a href="../View/BusquedaCliente.php"><i class="fa fa-search"></i> Buscar Cliente</a>
@@ -71,6 +69,20 @@
                     <li>
                         <a href="../View/BusquedaEquipo.php"><i class="fa fa-search"></i> Buscar Equipo</a>
                     </li>
+                    <li>
+                        <a href="#"><i class="fa fa-users"></i> Usuarios<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="RegistroUsuario.php">Registro de Usuario</a>
+                            </li>
+                            <li>
+                                <a href="BusquedaUsuario.php" class="active-menu">Editar - Eliminar</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
 
         </nav>
         <!-- /. NAV SIDE  -->
@@ -79,60 +91,25 @@
 		<div class="row">
                     <div class="col-md-2"></div>    
                     <div class="col-md-6">
-                        
-                        
                         <?php 
                         if(isset($_GET['msj'])){
                             $msj = $_GET['msj'];
                             include 'Mensajes.php';
-                        };?>
-                        
-                        
-                        
+                        };
+                        ?>
                         <h1 class="page-header">
-                            Registro de Equipo
+                            Busqueda de Usuario
                         </h1>
-                        <form action="../Controller/EquipoController.php?action=registrar" method="post" role="form">
+                        <form action="../Controller/UsuarioController.php?action=buscar" method="post" role="form">
                                 <div class="form-group">
-                                    <label for="tipo">Seleccionar Cliente:</label>
-                                    <select name="clienteId" class="form-control" required>
-                                        <option value=""></option>
-                                        <?php
-                                        include "../controller/equipoController.php";
-
-                                        $clientesId = clienteNombre();
-
-                                        foreach ($clientesId as $pro) {
-                                            echo '<option value=' . $pro['id'] . '>' . $pro['nombre'] . '</option>';
-                                        }
-                                        ?>  
-                                    </select>
+                                    <label for="nombre">Digite el nombre:</label>
+                                    <input class="form-control" name="nombre" >
                                 </div>
                                 <div class="form-group">
-                                    <label for="tipo">Tipo:</label>
-                                    <input class="form-control" name="tipo" required>
+                                    <label for="codigo"> Digite el usuario:</label>
+                                    <input class="form-control" name="username" >
                                 </div>
-                                <div class="form-group">
-                                    <label for="modelo">Modelo:</label>
-                                    <input class="form-control" name="modelo" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="marca">Marca:</label>
-                                    <input class="form-control" name="marca" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="serial">Numero de Serie:</label>
-                                    <input class="form-control" name="serial" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="problema">Problema:</label>
-                                    <input class="form-control" name="problema" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fecha">Fecha:</label>
-                                    <input class="form-control" name="fecha" value="<?php echo date("Y/m/d");?>" required >
-                                </div>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
                                 <button type="reset" class="btn btn-info">Reset</button>
                         </form>
                     </div>

@@ -2,11 +2,11 @@
 
 include '../Dao/UsuarioDao.php';
 
-class login{
-    private $id;
+class Usuario{
+    public $id;
     public $username;
     public $contrasena;
-    public $email;
+    public $nombre;
 }
 
 function login ($objUsuario){
@@ -14,8 +14,22 @@ function login ($objUsuario){
     if ($objUsuario->username == "taller" & $objUsuario->contrasena == "12345"){
         return TRUE;
     } else { 
-        FALSE;
+        return autenticar($objUsuario);
     }
-    
-    return autenticar($objUsuario);
+}
+
+function incluirUsuario($objUsuario){
+    return insertUsuario($objUsuario);
+}
+
+function buscarUsuario($objUsuario){
+    return searchUsuario($objUsuario);
+}
+
+function consultaUsuario($objUsuario){
+    return getUsuario($objUsuario);
+}
+
+function modificarUsuario($objUsuario){
+    return updateUsuario($objUsuario);
 }

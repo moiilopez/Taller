@@ -14,9 +14,8 @@ if($action == "registrar"){
         $objEquipo->modelo = $_POST["modelo"];
         $objEquipo->marca = $_POST["marca"];
         $objEquipo->serial = $_POST["serial"];
-        $objEquipo->problema = $_POST["serial"];
-        $objEquipo->fecha = $_POST["fecha"];
-        
+        $objEquipo->problema = $_POST["problema"];
+        $objEquipo->fecha = $_POST["fecha"]; 
         $objEquipo->clienteId = $_POST["clienteId"];
         
         $nombre = clienteNombre();
@@ -27,8 +26,6 @@ if($action == "registrar"){
             }
         }
         $objEquipo->clienteNombre = $name;
-        
-        if($objEquipo->clienteId != "cliente"){
 
             $resultado = incluirEquipo($objEquipo);
 
@@ -40,10 +37,7 @@ if($action == "registrar"){
                 $msj = 0;
                 header('Location:../View/RegistroEquipo.php?msj='.$msj);
             }
-        }  else {
-            $msj = 2;
-            header('Location:../View/RegistroEquipo.php?msj='.$msj);
-        }
+        
 }elseif ($action == "editar") {
     $objEquipo = new Equipo();
     
@@ -271,7 +265,6 @@ if(!empty($equipoId)){
                 2 => "Presupuestado",
                 3 => "Confirmado",
                 4 => "Pronto",
-                5 => "Entregado",
             ];
 }
 

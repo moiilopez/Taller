@@ -4,8 +4,8 @@ include_once '../dao/dao.php';
 
 function insertEquipo($objEquipo){
     
-    $sqlCommand = 'INSERT INTO equipo (tipo,modelo,marca,serial,problema,fecha,cliente_ID,cliente_Nombre,status)'
-            . ' VALUES (:tipo,:modelo,:marca,:serial,:problema,:fecha,:clienteId,:clienteNombre,:status)';
+    $sqlCommand = 'INSERT INTO equipo (tipo,modelo,marca,serial,problema,fecha,cliente_ID,cliente_Nombre)'
+            . ' VALUES (:tipo,:modelo,:marca,:serial,:problema,:fecha,:clienteId,:clienteNombre)';
     
     $parameters = array();
     $parameters [':tipo'] = $objEquipo->tipo;
@@ -15,7 +15,6 @@ function insertEquipo($objEquipo){
     $parameters [':problema'] = $objEquipo->problema;
     $parameters [':fecha'] = $objEquipo->fecha;
     $parameters [':clienteNombre'] = $objEquipo->clienteNombre;
-    $parameters [':status'] = $objEquipo->status;
     $parameters [':clienteId'] = $objEquipo->clienteId;
         
     return executeCommand($sqlCommand, $parameters);

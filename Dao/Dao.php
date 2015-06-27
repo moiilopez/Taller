@@ -10,7 +10,7 @@ function executeCommand($sqlCommand, $parameters){
         if($parameters != null){
             foreach ($parameters as $key => $value){
                 $comand->bindValue($key, $value);
-                //echo $key."=>".$value."<br>";
+                echo $key."=>".$value."<br>";
             }
         }
         $comand ->execute();

@@ -240,7 +240,7 @@
                                     Login
                                 </div>
                                 <div class="panel-body">
-                                    <form action="../controller/usuarioController.php" method="post" role="form">
+                                    <form action="../controller/UsuarioController.php?action=login" method="post" role="form">
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                                 <input class="form-control" type="text" name="nombre" required placeholder="Usuario"><br>

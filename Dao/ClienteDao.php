@@ -20,8 +20,9 @@ function insertCliente($objCliente){
 }
 
 function updateCliente($objCliente){
-    $sqlCommand = 'UPDATE cliente SET nombre=:nombre,telefono=:telefono,direccion=:direccion,localidad=:localidad,fecha=:fecha,documento=:documento,descuentos=:descuentos'
-            . ' WHERE id=:id';
+    $sqlCommand = 'UPDATE cliente '
+            . 'SET nombre=:nombre,telefono=:telefono,direccion=:direccion,localidad=:localidad,fecha=:fecha,documento=:documento,descuentos=:descuentos '
+            . 'WHERE id=:id';
     
     $parameters = array();
     
@@ -38,8 +39,9 @@ function updateCliente($objCliente){
 }
 
 function getCliente($objCliente){
-    $sqlCommand = 'SELECT id,nombre,telefono,direccion,localidad,fecha,documento,descuentos,activo FROM cliente'
-            . ' WHERE id=:id';
+    $sqlCommand = 'SELECT id,nombre,telefono,direccion,localidad,fecha,documento,descuentos,activo '
+            . 'FROM cliente '
+            . 'WHERE id=:id';
     
     $parameters = array();
     
@@ -49,7 +51,9 @@ function getCliente($objCliente){
 }
 
 function disableCliente($objCliente){
-    $sqlCommand = 'UPDATE cliente SET activo = 0 WHERE id=:id';
+    $sqlCommand = 'UPDATE cliente '
+            . 'SET activo = 0 '
+            . 'WHERE id=:id';
     
     $parameters = array();
     
@@ -59,7 +63,9 @@ function disableCliente($objCliente){
 }
 
 function enableCliente($objCliente){
-    $sqlCommand = 'UPDATE cliente SET activo = 1 WHERE id=:id';
+    $sqlCommand = 'UPDATE cliente '
+            . 'SET activo = 1 '
+            . 'WHERE id=:id';
     
     $parameters = array();
     
@@ -69,13 +75,18 @@ function enableCliente($objCliente){
 }
 
 function getDesactivados($objCliente) {
-    $sqlCommand = 'SELECT id,nombre,telefono,direccion,localidad,fecha,documento,descuentos FROM cliente WHERE activo = 0';
+    $sqlCommand = 'SELECT id,nombre,telefono,direccion,localidad,fecha,documento,descuentos '
+            . 'FROM cliente '
+            . 'WHERE activo = 0';
 
     return executeQuery($sqlCommand, array());
 }
 
 function searchCliente($objCliente){
-    $sqlCommand = 'SELECT id,nombre,telefono,direccion,localidad,fecha,documento,activo,descuentos FROM cliente WHERE nombre like "%":nombre"%" && id like "%":id"%" && documento like "%":documento"%" && activo = 1 ORDER BY Nombre';
+    $sqlCommand = 'SELECT id,nombre,telefono,direccion,localidad,fecha,documento,activo,descuentos '
+            . 'FROM cliente '
+            . 'WHERE nombre like "%":nombre"%" && id like "%":id"%" && documento like "%":documento"%" && activo = 1 '
+            . 'ORDER BY Nombre';
     
     $parameters = array();
     
@@ -87,7 +98,10 @@ function searchCliente($objCliente){
 }
 
 function searchAll($objCliente){
-    $sqlCommand = 'SELECT id,nombre,telefono,direccion,localidad,fecha,documento,activo,descuentos FROM cliente WHERE nombre like "%":nombre"%" && id like "%":id"%" && documento like "%":documento"%" ORDER BY Nombre';
+    $sqlCommand = 'SELECT id,nombre,telefono,direccion,localidad,fecha,documento,activo,descuentos '
+            . 'FROM cliente '
+            . 'WHERE nombre like "%":nombre"%" && id like "%":id"%" && documento like "%":documento"%" '
+            . 'ORDER BY Nombre';
     
     $parameters = array();
     
